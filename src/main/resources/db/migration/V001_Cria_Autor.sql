@@ -1,0 +1,6 @@
+create table AUTOR(
+ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+NOME varchar(100),
+EMAIL varchar(100),
+DESCRICAO varchar(500)
+);
