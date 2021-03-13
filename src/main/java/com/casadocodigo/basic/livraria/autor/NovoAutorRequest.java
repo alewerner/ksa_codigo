@@ -12,20 +12,17 @@ public class NovoAutorRequest {
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 5)
     private String nome;
 
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 10)
     private String email;
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 10)
     private String descricao;
 
@@ -37,5 +34,17 @@ public class NovoAutorRequest {
 
     public Autor toModel() {
         return new Autor(this.nome, this.email, this.descricao);
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }
