@@ -2,6 +2,7 @@ buildscript{
 	ext {
 		swaggerVersion = '2.9.2'
 		swaggerAnnotationVersion = '1.5.17'
+		springBootValidation = '2.4.3'
 	}
 }
 
@@ -23,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
+	implementation "org.springframework.boot:spring-boot-starter-validation:${springBootValidation}"
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
