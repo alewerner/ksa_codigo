@@ -5,10 +5,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class NovoAutorRequest {
-
+    // TODO: 18/03/2021 comentar do import errado 
     @NotBlank
     private String nome;
-    @NotNull
+    
     @NotBlank
     @Email
     private String email;
