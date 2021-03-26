@@ -1,24 +1,22 @@
 package com.casadocodigo.basic.livraria.categoria;
 
-
+import com.casadocodigo.basic.livraria.shared.configuration.validator.UniqueValue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
-import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
 public class NovaCategoriaRequest {
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 5)
+    @UniqueValue(domainClass = Categoria.class, fieldName = "nome")
     private String nome;
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 10)
     private String descricao;
 

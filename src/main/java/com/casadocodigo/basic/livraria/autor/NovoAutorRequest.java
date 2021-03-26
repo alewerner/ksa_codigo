@@ -1,24 +1,24 @@
 package com.casadocodigo.basic.livraria.autor;
 
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import org.hibernate.validator.constraints.Length;
-
 public class NovoAutorRequest {
-
 
     @NotNull
     @NotEmpty
     @Length(min = 5)
     private String nome;
 
-
     @NotNull
     @NotEmpty
+    @Email
     @Length(min = 10)
+    @UniqueValue(domainClass = Autor.class, fieldName = "email")
     private String email;
 
     @NotNull
