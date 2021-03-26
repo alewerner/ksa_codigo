@@ -35,7 +35,10 @@ public class NovoAutorRequest {
         return new Autor(this.nome, this.email, this.descricao);
     }
 
+
+
     public String getEmail() {
         return this.email;
     }
+
 }
