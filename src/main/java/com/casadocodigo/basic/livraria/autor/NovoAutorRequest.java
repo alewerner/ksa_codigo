@@ -1,19 +1,22 @@
 package com.casadocodigo.basic.livraria.autor;
 
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class NovoAutorRequest {
-
-
-    @NotNull
+    // TODO: 18/03/2021 comentar do import errado 
+    @NotBlank
     private String nome;
-    @NotNull
+    
+    @NotBlank
+    @Email
     private String email;
-    @NotNull
+    @NotBlank
+    @Size(max = 400)
     private String descricao;
 
-    public NovoAutorRequest(String nome, String email, String descricao) {
+    public NovoAutorRequest(@NotBlank String nome, @NotBlank @Email String email, String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
@@ -25,5 +28,13 @@ public class NovoAutorRequest {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }
