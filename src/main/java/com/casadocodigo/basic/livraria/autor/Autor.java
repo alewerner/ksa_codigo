@@ -1,47 +1,75 @@
 package com.casadocodigo.basic.livraria.autor;
 
-import java.util.List;
-import java.util.Optional;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@RestController
-public class AutorController {
+@Entity
+public class Autor {
 
-    @Autowired
-    private AutorRepository autorRepository;
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Long id;
 
-    @PostMapping( value = "/api/autores" )
-    @Transactional
-    public String criar( @RequestBody @Valid NovoAutorRequest request ) {
+    @NotBlank
+    private String nome;
 
-        Autor autor = request.toModel();
-        autorRepository.save( autor );
+    @NotBlank
+    private String email;
 
-        return autor.toString();
+    @NotBlank
+    @Size( max = 400 )
+    private String descricao;
+    // TODO: 09/03/2021 adicionar data de criação do autor
+
+    @Column( name = "data" )
+    private LocalDate dataDeCriacao;
+
+
+    public Autor( String nome, String email, String descricao ) {
+        this.nome = nome;
+        this.email = email;
+        this.descricao = descricao;
+        this.dataDeCriacao = LocalDate.now();
     }
 
-    @GetMapping( value = "/api/autores/{nome}" )
-    public AutorDto detalhar( @PathVariable String nome ) {
-        Optional<Autor> autor = autorRepository.findByNome( nome );
-        if ( autor.isPresent() ) {
-            return new AutorDto( autor.get() );
-        } else {
-            throw new ResponseStatusException( HttpStatus.NOT_FOUND );
-        }
+    @Deprecated
+    public Autor() {
     }
 
-    @GetMapping( value = "/api/autores/listarTodos" )
-    public List<AutorDto> listarTodos() {
-        List<Autor> autores = autorRepository.findAll();
-        return AutorDto.converter( autores );
+    public Long getId() {
+        return id;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public LocalDate getdataDeCriacao() {
+        return dataDeCriacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+            "id=" + id +
+            ", nome='" + nome + '\'' +
+            ", email='" + email + '\'' +
+            ", descricao='" + descricao + '\'' +
+            '}';
+    }
+
 }

@@ -8,5 +8,18 @@ public class CategoriaDto {
 
     public CategoriaDto( Categoria categoria ) {
         this.nome = categoria.getNome();
+        this.descricao = categoria.getDescricao();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

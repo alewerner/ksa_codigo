@@ -1,13 +1,22 @@
 package com.casadocodigo.basic.livraria.categoria;
 
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Optional;
+
+import org.hibernate.validator.constraints.Length;
 
 public class NovaCategoriaRequest {
 
     @NotNull
+    @NotEmpty
+    @Length(min = 5)
     private String nome;
+
     @NotNull
+    @NotEmpty
+    @Length(min = 10)
     private String descricao;
 
     public NovaCategoriaRequest( String nome, String descricao ) {
@@ -15,16 +24,8 @@ public class NovaCategoriaRequest {
         this.descricao = descricao;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public Categoria converter(CategoriaRepository categoriaRepository){
-        Categoria categoria = categoriaRepository.findByNome(nome);
+        Optional<Categoria> categoria = categoriaRepository.findByNome(nome);
         return new Categoria( nome, descricao );
     }
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AutorRepository extends JpaRepository<Autor, Long> {
 
     @Override
-    Optional<Autor> findById(Long aLong);
+    Optional<Autor> findById(Long id);
 
     List<Autor> findByEmail(String email);
 

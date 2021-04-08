@@ -1,11 +1,15 @@
 package com.casadocodigo.basic.livraria.categoria;
 
-import java.util.List;
+import com.casadocodigo.basic.livraria.autor.Autor;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
-    Categoria findByNome(String nome);
+    @Override
+    Optional<Categoria> findById(Long id);
+
+    Optional<Categoria> findByNome(String nome);
 }
