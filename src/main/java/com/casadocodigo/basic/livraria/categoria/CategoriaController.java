@@ -17,7 +17,7 @@ public class CategoriaController {
 
     @Transactional
     @PostMapping( value = "/api/categoria/criar" )
-    public String cadastrarCategoria( @RequestBody NovoCategoriaRequest request ) {
+    public String cadastrarCategoria( @RequestBody NovaCategoriaRequest request ) {
         Categoria categoria = request.converter( categoriaRepository );
         categoriaRepository.save( categoria );
 
