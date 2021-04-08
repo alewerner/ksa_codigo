@@ -3,10 +3,12 @@ package com.casadocodigo.basic.livraria.categoria;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Categoria {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -14,8 +16,8 @@ public class Categoria {
     private String descricao;
 
     public Categoria( String nome, String descricao ) {
-        this.descricao = descricao;
         this.nome = nome;
+        this.descricao = descricao;
     }
 
     public String getNome() {

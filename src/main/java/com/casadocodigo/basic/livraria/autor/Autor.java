@@ -1,47 +1,47 @@
 package com.casadocodigo.basic.livraria.autor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-@Entity
-public class Autor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@RestController
+public class AutorController {
 
-    private String nome;
-    private String email;
-    private String descricao;
-    // TODO: 09/03/2021 adicionar data de criação do autor
+    @Autowired
+    private AutorRepository autorRepository;
 
-    public Autor(String nome, String email, String descricao) {
+    @PostMapping( value = "/api/autores" )
+    @Transactional
+    public String criar( @RequestBody @Valid NovoAutorRequest request ) {
 
-        this.nome = nome;
-        this.email = email;
-        this.descricao = descricao;
+        Autor autor = request.toModel();
+        autorRepository.save( autor );
+
+        return autor.toString();
     }
 
-    public String getNome() {
-        return nome;
+    @GetMapping( value = "/api/autores/{nome}" )
+    public AutorDto detalhar( @PathVariable String nome ) {
+        Optional<Autor> autor = autorRepository.findByNome( nome );
+        if ( autor.isPresent() ) {
+            return new AutorDto( autor.get() );
+        } else {
+            throw new ResponseStatusException( HttpStatus.NOT_FOUND );
+        }
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    @Override
-    public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
+    @GetMapping( value = "/api/autores/listarTodos" )
+    public List<AutorDto> listarTodos() {
+        List<Autor> autores = autorRepository.findAll();
+        return AutorDto.converter( autores );
     }
 }
