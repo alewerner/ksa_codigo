@@ -21,9 +21,12 @@ public class Categoria {
     @Size( max = 400 )
     private String descricao;
 
+    private boolean ativo;
+
     public Categoria( String nome, String descricao ) {
         this.nome = nome;
         this.descricao = descricao;
+        this.ativo = true;
     }
 
     @Deprecated
@@ -48,8 +51,9 @@ public class Categoria {
     public String toString() {
         return "Categoria{" +
             "id=" + id +
-            ", nomeDaCategoria='" + nome + '\'' +
-            ", descricaoDaCategoria='" + descricao + '\'' +
+            ", nome='" + nome + '\'' +
+            ", descricao='" + descricao + '\'' +
+            ", ativo=" + ativo +
             '}';
     }
 }

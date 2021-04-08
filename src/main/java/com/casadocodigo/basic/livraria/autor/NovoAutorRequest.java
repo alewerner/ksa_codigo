@@ -4,6 +4,7 @@ package com.casadocodigo.basic.livraria.autor;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
 public class NovoAutorRequest {
@@ -11,17 +12,20 @@ public class NovoAutorRequest {
 
     @NotNull
     @NotEmpty
+    @Getter
     @Length(min = 5)
     private String nome;
 
 
     @NotNull
     @NotEmpty
+    @Getter
     @Length(min = 10)
     private String email;
 
     @NotNull
     @NotEmpty
+    @Getter
     @Length(min = 10)
     private String descricao;
 

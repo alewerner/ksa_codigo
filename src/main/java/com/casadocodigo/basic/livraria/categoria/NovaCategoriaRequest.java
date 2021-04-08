@@ -5,17 +5,20 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
+import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
 public class NovaCategoriaRequest {
 
     @NotNull
     @NotEmpty
+    @Getter
     @Length(min = 5)
     private String nome;
 
     @NotNull
     @NotEmpty
+    @Getter
     @Length(min = 10)
     private String descricao;
 
@@ -25,7 +28,7 @@ public class NovaCategoriaRequest {
     }
 
     public Categoria converter(CategoriaRepository categoriaRepository){
-        Optional<Categoria> categoria = categoriaRepository.findByNome(nome);
+        Optional<Categoria> categoria = categoriaRepository.findByNomeIgnoreCase(nome);
         return new Categoria( nome, descricao );
     }
 }

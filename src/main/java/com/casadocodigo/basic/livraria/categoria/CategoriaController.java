@@ -31,11 +31,18 @@ public class CategoriaController {
 
     @GetMapping( value = "/api/categoria/{nome}" )
     public CategoriaDto listarCategoria( @PathVariable String nome ) {
-        Optional<Categoria> categoria = categoriaRepository.findByNome( nome );
+        Optional<Categoria> categoria = categoriaRepository.findByNomeIgnoreCase( nome );
         if ( categoria.isPresent() ){
             return new CategoriaDto( categoria.get() );
         }else{
             throw new ResponseStatusException( HttpStatus.NOT_FOUND );
         }
     }
+
+    @GetMapping( value ="/api/categoria/listarTodos" )
+        public List<CategoriaDto> listarTodos() {
+        List<Categoria> categorias = categoriaRepository.findAll();
+        return CategoriaDto.converter( categorias );
+    }
+
 }
