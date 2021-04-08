@@ -2,6 +2,7 @@ package com.casadocodigo.basic.livraria.autor;
 
 
 import org.hibernate.validator.constraints.Length;
+import com.casadocodigo.basic.livraria.shared.configuration.validator.UniqueValue;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
