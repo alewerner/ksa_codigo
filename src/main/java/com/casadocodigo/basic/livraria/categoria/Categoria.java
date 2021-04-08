@@ -10,28 +10,28 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeDaCategoria;
-    private String descricaoDaCategoria;
+    private String nome;
+    private String descricao;
 
-    public Categoria( String nomeDaCategoria, String descricaoDaCategoria ) {
-        this.descricaoDaCategoria = descricaoDaCategoria;
-        this.nomeDaCategoria = nomeDaCategoria;
+    public Categoria( String nome, String descricao ) {
+        this.descricao = descricao;
+        this.nome = nome;
     }
 
-    public String getNomeDaCategoria() {
-        return nomeDaCategoria;
+    public String getNome() {
+        return nome;
     }
 
-    public String getDescricaoDaCategoria() {
-        return descricaoDaCategoria;
+    public String getDescricao() {
+        return descricao;
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
             "id=" + id +
-            ", nomeDaCategoria='" + nomeDaCategoria + '\'' +
-            ", descricaoDaCategoria='" + descricaoDaCategoria + '\'' +
+            ", nomeDaCategoria='" + nome + '\'' +
+            ", descricaoDaCategoria='" + descricao + '\'' +
             '}';
     }
 }
