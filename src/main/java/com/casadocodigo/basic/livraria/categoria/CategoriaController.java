@@ -25,7 +25,7 @@ public class CategoriaController {
     }
 
     @GetMapping( value = "/api/categoria/{nome}" )
-    public CategoriaDto listarCategoria( @RequestParam @PathVariable nome ) {
+    public CategoriaDto listarCategoria( @RequestParam @PathVariable String nome ) {
         Categoria categoria = categoriaRepository.findByNome(nome);
         return new CategoriaDto(categoria);
     }
