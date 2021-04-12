@@ -8,17 +8,16 @@ import java.util.Optional;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
+@Getter
 public class NovaCategoriaRequest {
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 5)
     private String nome;
 
     @NotNull
     @NotEmpty
-    @Getter
     @Length(min = 10)
     private String descricao;
 
