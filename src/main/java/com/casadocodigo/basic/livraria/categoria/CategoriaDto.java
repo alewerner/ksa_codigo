@@ -2,9 +2,6 @@ package com.casadocodigo.basic.livraria.categoria;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 
 
 public class CategoriaDto {
