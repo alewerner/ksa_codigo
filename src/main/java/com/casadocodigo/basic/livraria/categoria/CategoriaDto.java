@@ -16,14 +16,6 @@ public class CategoriaDto {
         this.descricao = categoria.getDescricao();
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public static List<CategoriaDto> converter( List<Categoria> categorias ) {
         return categorias.stream().map( CategoriaDto::new ).collect( Collectors.toList() );
     }
