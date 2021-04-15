@@ -2,16 +2,12 @@ package com.casadocodigo.basic.livraria.livro;
 
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Livro {
@@ -21,29 +17,21 @@ public class Livro {
     private Long id;
 
     @NotBlank
-    @Column( unique = true )
     private String titulo;
 
     @NotBlank
-    @Size( min = 20, max = 20 )
-    @ApiModelProperty( example = "ISBN 978-0-7334-2609" )
-    @Column( unique = true )
     private String isbn;
 
     @NotBlank
-    @Size( max = 500 )
     private String resumo;
 
     @NotBlank
-    @Size( max = 1000 )
     private String sumario;
 
     @NotBlank
-    @Min( 20 )
     private double preco;
 
     @NotBlank
-    @Min( 100 )
     private int numeroDePaginas;
 
     @NotBlank
@@ -56,12 +44,9 @@ public class Livro {
     private Categoria categoriaDoLivro;
 
     public Livro(
-        @NotBlank String titulo,
-        @NotBlank @Size( min = 20, max = 20 ) String isbn,
-        @NotBlank @Size( max = 500 ) String resumo,
-        @NotBlank @Size( max = 1000 ) String sumario,
-        @NotBlank @Min( 20 ) double preco,
-        @NotBlank @Min( 100 ) int numeroDePaginas, @NotBlank Date dataDePublicacao,
+        @NotBlank String titulo, @NotBlank String isbn,
+        @NotBlank String resumo, @NotBlank String sumario, @NotBlank double preco,
+        @NotBlank int numeroDePaginas, @NotBlank Date dataDePublicacao,
         @NotBlank Autor autorDoLivro,
         @NotBlank Categoria categoriaDoLivro ) {
 
@@ -74,7 +59,6 @@ public class Livro {
         this.dataDePublicacao = dataDePublicacao;
         this.autorDoLivro = autorDoLivro;
         this.categoriaDoLivro = categoriaDoLivro;
-
     }
 
     @Deprecated
