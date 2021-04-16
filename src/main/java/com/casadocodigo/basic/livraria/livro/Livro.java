@@ -2,13 +2,15 @@ package com.casadocodigo.basic.livraria.livro;
 
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Livro {
@@ -29,29 +31,29 @@ public class Livro {
     @NotBlank
     private String sumario;
 
-    @NotBlank
-    private double preco;
+    @NotNull
+    private BigDecimal preco;
 
-    @NotBlank
+    @NotNull
     private int numeroDePaginas;
 
-    @NotBlank
+    @NotNull
     private Date dataDePublicacao;
 
-    @NotBlank
-    @JoinTable(name = "AUTOR")
+    @NotNull
+    @ManyToOne
     private Autor autorDoLivro;
 
-    @NotBlank
-    @JoinTable(name = "CATEGORIA")
+    @NotNull
+    @ManyToOne
     private Categoria categoriaDoLivro;
 
     public Livro(
         @NotBlank String titulo, @NotBlank String isbn,
-        @NotBlank String resumo, @NotBlank String sumario, @NotBlank double preco,
-        @NotBlank int numeroDePaginas, @NotBlank Date dataDePublicacao,
-        @NotBlank Autor autorDoLivro,
-        @NotBlank Categoria categoriaDoLivro ) {
+        @NotBlank String resumo, @NotBlank String sumario, @NotNull BigDecimal preco,
+        @NotNull int numeroDePaginas, @NotNull Date dataDePublicacao,
+        @NotNull Autor autorDoLivro,
+        @NotNull Categoria categoriaDoLivro ) {
 
         this.titulo = titulo;
         this.isbn = isbn;
@@ -84,7 +86,7 @@ public class Livro {
         return sumario;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
