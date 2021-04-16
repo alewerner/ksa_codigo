@@ -1,0 +1,10 @@
+create table LIVRO(
+ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+TITULO varchar(100),
+ISBN varchar(20),
+RESUMO varchar(500),
+SUMARIO varchar(1000),
+PRECO int,
+NUMERODEPAGINAS int,
+DATEDEPUBLICACAO date
+);

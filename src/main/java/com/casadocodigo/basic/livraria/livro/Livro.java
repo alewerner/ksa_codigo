@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -38,9 +39,11 @@ public class Livro {
     private Date dataDePublicacao;
 
     @NotBlank
+    @JoinTable(name = "AUTOR")
     private Autor autorDoLivro;
 
     @NotBlank
+    @JoinTable(name = "CATEGORIA")
     private Categoria categoriaDoLivro;
 
     public Livro(
