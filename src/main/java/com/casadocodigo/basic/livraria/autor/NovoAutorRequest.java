@@ -1,6 +1,5 @@
 package com.casadocodigo.basic.livraria.autor;
 
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -11,21 +10,22 @@ public class NovoAutorRequest {
 
     @NotNull
     @NotEmpty
-    @Length(min = 5)
+    @Length( min = 5 )
     private String nome;
 
 
     @NotNull
     @NotEmpty
-    @Length(min = 10)
+    @Length( min = 10 )
     private String email;
 
     @NotNull
     @NotEmpty
-    @Length(min = 10)
+    @Length( min = 10 )
+
     private String descricao;
 
-    public NovoAutorRequest(String nome, String email, String descricao) {
+    public NovoAutorRequest( String nome, String email, String descricao ) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
@@ -40,5 +40,5 @@ public class NovoAutorRequest {
     public String getEmail() {
         return this.email;
     }
-
 }
+
