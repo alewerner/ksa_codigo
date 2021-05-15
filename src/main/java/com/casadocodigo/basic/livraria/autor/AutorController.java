@@ -31,7 +31,9 @@ public class AutorController {
 
     @GetMapping( value = "/api/autores/{nome}" )
     public AutorDto detalhar( @PathVariable String nome ) {
+
         Optional<Autor> autor = autorRepository.findByNomeIgnoreCase( nome );
+    
         if ( autor.isPresent() ) {
             return new AutorDto( autor.get() );
         } else {

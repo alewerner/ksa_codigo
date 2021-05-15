@@ -71,5 +71,4 @@ public class Autor {
             ", descricao='" + descricao + '\'' +
             '}';
     }
-
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,15 +31,15 @@ public class CategoriaController {
     @GetMapping( value = "/api/categoria/{nome}" )
     public CategoriaDto listarCategoria( @PathVariable String nome ) {
         Optional<Categoria> categoria = categoriaRepository.findByNomeIgnoreCase( nome );
-        if ( categoria.isPresent() ){
+        if ( categoria.isPresent() ) {
             return new CategoriaDto( categoria.get() );
-        }else{
+        } else {
             throw new ResponseStatusException( HttpStatus.NOT_FOUND );
         }
     }
 
-    @GetMapping( value ="/api/categoria/listarTodos" )
-        public List<CategoriaDto> listarTodos() {
+    @GetMapping( value = "/api/categoria/listarTodos" )
+    public List<CategoriaDto> listarTodos() {
         List<Categoria> categorias = categoriaRepository.findAll();
         return CategoriaDto.converter( categorias );
     }

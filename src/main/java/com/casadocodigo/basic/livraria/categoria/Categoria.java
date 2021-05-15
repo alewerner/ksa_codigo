@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 @Entity
 public class Categoria {
 
@@ -38,12 +39,10 @@ public class Categoria {
     }
 
     public String getNome() {
-
         return nome;
     }
 
     public String getDescricao() {
-
         return descricao;
     }
 
