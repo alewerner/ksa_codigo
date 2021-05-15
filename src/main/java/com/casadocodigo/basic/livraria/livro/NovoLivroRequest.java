@@ -2,7 +2,11 @@ package com.casadocodigo.basic.livraria.livro;
 
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
+import com.casadocodigo.basic.livraria.shared.configuration.ExistsId;
 import com.casadocodigo.basic.livraria.shared.configuration.validator.UniqueValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
@@ -23,30 +27,35 @@ public class NovoLivroRequest {
     @NotBlank
     @UniqueValue(domainClass = Livro.class, fieldName = "isbn")
     private String isbn;
-    // TODO: 04/04/2021 criar validação que a data é maior que a data atual - não pode ter datas no passado
+
     @NotBlank
     @Future
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+    //@DateTimeFormat
     private LocalDate dataPublicacao;
-    @NotNull
 
-    private Categoria categoria;
     @NotNull
-    private Autor autor;
+    @ExistsId(domainClass = Categoria.class, fieldName = "id")
+    private Long idCategoria;
+
+    @NotNull
+    @ExistsId(domainClass = Autor.class, fieldName = "id")
+    private Long idAutor;
 
     @Deprecated
     public NovoLivroRequest() {
     }
 
     public NovoLivroRequest(@NotBlank String resumo, @NotBlank String sumario, @NotBlank @Min(20) BigDecimal preco, @NotBlank @Min(100) Integer numPaginas,
-                            @NotBlank String isbn, LocalDate dataPublicacao, @NotBlank Categoria categoria, @NotBlank Autor autor) {
+                            @NotBlank String isbn, LocalDate dataPublicacao, @NotBlank Long idCategoria, @NotBlank Long idAutor) {
         this.resumo = resumo;
         this.sumario = sumario;
         this.preco = preco;
         this.numPaginas = numPaginas;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
-        this.categoria = categoria;
-        this.autor = autor;
+        this.idCategoria = idCategoria;
+        this.idAutor = idAutor;
     }
 
     public String getResumo() {
@@ -73,11 +82,11 @@ public class NovoLivroRequest {
         return dataPublicacao;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Long getIdCategoria() {
+        return idCategoria;
     }
 
-    public Autor getAutor() {
-        return autor;
+    public Long getIdAutor() {
+        return idAutor;
     }
 }
