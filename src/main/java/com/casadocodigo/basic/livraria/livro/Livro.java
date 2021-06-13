@@ -3,10 +3,7 @@ package com.casadocodigo.basic.livraria.livro;
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -43,8 +40,10 @@ public class Livro {
     @NotNull
     private LocalDate dataPublicacao;
     @NotNull
+    @ManyToOne
     private Categoria categoria;
     @NotNull
+    @ManyToOne
     private Autor autor;
 
     public Livro(Long id, String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataPublicacao, Categoria categoria, Autor autor) {
