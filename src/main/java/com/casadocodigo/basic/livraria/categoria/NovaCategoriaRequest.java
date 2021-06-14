@@ -29,4 +29,12 @@ public class NovaCategoriaRequest {
         Optional<Categoria> categoria = categoriaRepository.findByNomeIgnoreCase( nome );
         return new Categoria( nome, descricao );
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

@@ -46,8 +46,7 @@ public class Livro {
     @ManyToOne
     private Autor autor;
 
-    public Livro(Long id, String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataPublicacao, Categoria categoria, Autor autor) {
-        this.id = id;
+    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataPublicacao, Categoria categoria, Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
