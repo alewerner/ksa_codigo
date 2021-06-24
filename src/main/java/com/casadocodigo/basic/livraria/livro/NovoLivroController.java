@@ -15,15 +15,15 @@ public class NovoLivroController {
     @Autowired
     private LivroRepository livroRepository;
 
+    @Autowired
+    private CadastraLivroService service;
+
     @PersistenceContext
     private EntityManager manager;
 
     @PostMapping(value = "api/livros")
     @Transactional
     public String postLivro(@RequestBody NovoLivroRequest novoLivroRequest) {
-
-        Livro novoLivro = novoLivroRequest.toModel(manager);
-        livroRepository.save(novoLivro);
-        return novoLivro.toString();
+        return service.cadastraLiveo(novoLivroRequest).toString();
     }
 }
