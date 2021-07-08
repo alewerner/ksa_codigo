@@ -1,8 +1,10 @@
 package com.casadocodigo.basic.livraria.livro;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
@@ -23,7 +25,8 @@ public class NovoLivroController {
 
     @PostMapping(value = "api/livros")
     @Transactional
-    public String postLivro(@RequestBody NovoLivroRequest novoLivroRequest) {
-        return service.cadastraLiveo(novoLivroRequest).toString();
+    @ResponseStatus( HttpStatus.CREATED)
+    public void postLivro(@RequestBody NovoLivroRequest novoLivroRequest) {
+        service.cadastraLivro(novoLivroRequest);
     }
 }
