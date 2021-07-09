@@ -4,9 +4,9 @@ import com.casadocodigo.basic.livraria.livro.NovoLivroRequest;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class TestMock {
+public class RequestLivroMock {
 
-    public static NovoLivroRequest getRequest() {
+    public static NovoLivroRequest getRequestNovoLivro() {
         NovoLivroRequest novoLivroRequest = new NovoLivroRequest(
             "resumo",
             "sumario",

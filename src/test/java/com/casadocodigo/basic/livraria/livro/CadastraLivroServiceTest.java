@@ -1,25 +1,24 @@
 package com.casadocodigo.basic.livraria.livro;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import com.casadocodigo.basic.livraria.TestMock;
+import com.casadocodigo.basic.livraria.RequestLivroMock;
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.autor.AutorRepository;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
 import com.casadocodigo.basic.livraria.categoria.CategoriaRepository;
 import java.util.Optional;
-import org.junit.Assert;
+import javax.persistence.EntityNotFoundException;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -39,12 +38,6 @@ public class CadastraLivroServiceTest {
     @Mock
     private CategoriaRepository categoriaRepository;
 
-    @Captor
-    ArgumentCaptor<Autor> autorRepositoryrgumentCaptor;
-
-    @Captor
-    ArgumentCaptor<Categoria> categoriaRepositoryrgumentCaptor;
-
     @Test
     public void testaCriarLivroComSucesso() {
         Autor autor = mock( Autor.class );
@@ -53,33 +46,23 @@ public class CadastraLivroServiceTest {
 
         when( categoriaRepository.findById( 1L ) ).thenReturn( Optional.of( categoria ) );
 
-        cadastraLivroService.cadastraLivro( TestMock.getRequest() );
+        cadastraLivroService.cadastraLivro( RequestLivroMock.getRequestNovoLivro() );
         verify( livroRepository, times( 1 ) ).save( ArgumentMatchers.any( Livro.class ) );
     }
 
     @Test
-    public void testaAutorNaoEncontrado() {
-        when( autorRepository.findById( anyLong() ) )
-            .thenReturn( Optional.empty() );
-
-        cadastraLivroService.cadastraLivro( TestMock.getRequest() );
-
-        verify( autorRepository ).save( autorRepositoryrgumentCaptor.capture() );
-
-        assertNull( autorRepositoryrgumentCaptor.getValue().getId() );
+    public void assertCategoriaNotFound() {
+        Autor autor = mock( Autor.class );
+        when( autorRepository.findById( 1L ) ).thenReturn( Optional.of( autor ) );
+        when( categoriaRepository.findById( 1L ) ).thenReturn( Optional.empty() );
+        assertThrows( EntityNotFoundException.class,
+            () -> cadastraLivroService.cadastraLivro( RequestLivroMock.getRequestNovoLivro() ) );
     }
 
     @Test
-    public void testeCategoriaNaoEncontrada() {
-
-        when( categoriaRepository.findById( anyLong() ) )
-            .thenReturn( Optional.empty() );
-
-        cadastraLivroService.cadastraLivro( TestMock.getRequest() );
-
-        verify( categoriaRepository ).save( categoriaRepositoryrgumentCaptor.capture() );
-
-        assertNull( categoriaRepositoryrgumentCaptor.getValue().getId() );
-
+    public void assertAutorNotFound() {
+        when( autorRepository.findById( 1L ) ).thenReturn( Optional.empty() );
+        assertThrows( EntityNotFoundException.class,
+            () -> cadastraLivroService.cadastraLivro( RequestLivroMock.getRequestNovoLivro() ) );
     }
 }
