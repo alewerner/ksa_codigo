@@ -1,6 +1,8 @@
 package com.casadocodigo.basic.livraria.autor;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 public class AutorDto {
 
     private Long id;
+    @ApiModelProperty(value = "Nome do Autor")
     private String nome;
     private LocalDate dataDeCriacao;
 
