@@ -1,6 +1,14 @@
 version: '3'
 
-services: 
+services:
+  backend:
+    build: .
+    depends_on:
+      - "mysql.livraria"
+    links:
+      - mysql.livraria
+    ports:
+      - "8081:8081"
   mysql.livraria:
     image: mysql:5.7
     ports:

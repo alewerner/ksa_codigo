@@ -33,7 +33,7 @@ public class CadastraLivroService implements ICadastraLivroService {
         }
 
         Livro livro = new Livro( request.getTitulo(), request.getResumo(), request.getSumario(), request.getPreco(),
-            request.getNumPaginas(), request.getIsbn(), request.getDataPublicacao(), categoria.get(), autor.get() );
+            request.getNumeroPaginas(), request.getIsbn(), request.getDataPublicacao(), categoria.get(), autor.get() );
 
         livroRepository.save( livro );
     }

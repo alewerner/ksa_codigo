@@ -1,4 +1,4 @@
-package com.casadocodigo.basic.livraria;
+package com.casadocodigo.basic.livraria.utils;
 
 import com.casadocodigo.basic.livraria.livro.NovoLivroRequest;
 import java.math.BigDecimal;

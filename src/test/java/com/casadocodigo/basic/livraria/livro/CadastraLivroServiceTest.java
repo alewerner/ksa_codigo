@@ -6,14 +6,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.casadocodigo.basic.livraria.RequestLivroMock;
+import com.casadocodigo.basic.livraria.utils.RequestLivroMock;
 import com.casadocodigo.basic.livraria.autor.Autor;
 import com.casadocodigo.basic.livraria.autor.AutorRepository;
 import com.casadocodigo.basic.livraria.categoria.Categoria;
 import com.casadocodigo.basic.livraria.categoria.CategoriaRepository;
 import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
