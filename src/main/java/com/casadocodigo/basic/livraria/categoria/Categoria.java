@@ -12,19 +12,19 @@ import javax.validation.constraints.Size;
 public class Categoria {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     private String nome;
 
     @NotBlank
-    @Size( max = 400 )
+    @Size(max = 400)
     private String descricao;
 
     private boolean ativo;
 
-    public Categoria( String nome, String descricao ) {
+    public Categoria(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
         this.ativo = true;
@@ -49,10 +49,10 @@ public class Categoria {
     @Override
     public String toString() {
         return "Categoria{" +
-            "id=" + id +
-            ", nome='" + nome + '\'' +
-            ", descricao='" + descricao + '\'' +
-            ", ativo=" + ativo +
-            '}';
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", ativo=" + ativo +
+                '}';
     }
 }
